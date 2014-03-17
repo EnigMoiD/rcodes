@@ -1,4 +1,11 @@
 function decode(code) {
+	try {
+		if (code.length < 3 || code.length > 5)
+			throw "Invalid resistor code length."
+	}
+	catch (e) {
+		return "Error: " + e
+	}
 	var map = {
 		k: 0,
 		b: 1,
@@ -11,14 +18,12 @@ function decode(code) {
 		a: 8,
 		i: 9
 	}
-	bands = code.length;
-	// Tolerance
+	var bands = code.length;
+
 	var tol = code[bands-1]
 
-	// Exponent
 	var mult = Math.pow(10, map[code[bands-2]])
 
-	// Value
 	var value = 0
 	var mantissa = bands-2
 	for (var i = 0; i < mantissa; i++) {

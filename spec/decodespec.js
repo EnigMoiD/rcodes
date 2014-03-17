@@ -8,4 +8,8 @@ describe("The resistor decoder", function() {
 	it("decodes 5-band resistors.", function() {
 		expect(decode("bkkkr")).toBe(100);
 	})
+	
+	it("doesn't decode 6-band resistors.", function() {
+		expect(decode("bkkkru")).toBe('Error: Invalid resistor code length.');
+	})
 })
