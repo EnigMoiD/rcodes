@@ -1,4 +1,4 @@
-var decode = require('../decode.js').decode
+var decode = require('../public/js/decode.js').decode
 
 describe("The resistor decoder", function() {
 	it("decodes 4-band resistors.", function() {

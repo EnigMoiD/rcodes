@@ -43,4 +43,4 @@ function decode(code) {
 	};
 }
 
-module.exports.decode = decode;
+module.exports.decode = decode
