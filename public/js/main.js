@@ -1,9 +1,11 @@
 $(document).ready(function() {
-	var cells = []
+	var mantissae = []
 	for (var key in map) {
-		var cell = { content: "", color: map[key].color.name }
-		cells.push(cell)
+		var mantissa = { content: "", color: map[key].color.name }
+		if (map[key].mant)
+			mantissae.push(mantissa)
 	}
 
-	Carousel(cells, 'decoder')
+	Carousel(mantissae, 'decoder')
+	Carousel(mantissae, 'decoder')
 })
