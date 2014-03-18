@@ -3,10 +3,11 @@ function Carousel(cells, selector, style) {
 	container.addClass('carousel')
 	container.css(style)
 
-	for (var i in cells) {
-		cell = cells[i]
-		container.append(assembleCell(cell))
-	}
+	for (var j = 0; j < 3; j++)
+		for (var i in cells) {
+			cell = cells[i]
+			container.append(assembleCell(cell))
+		}
 
 	container.children().mouseup(function() {
 		alert('click')
