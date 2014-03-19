@@ -12,10 +12,27 @@ a
 	&:active
 		color inherit
 
+/*
+// Good call by d3vron:
+// gist.github.com/d3vron/1080346
+*/
+vendor(prop, args)
+	-webkit-{prop} args
+	-moz-{prop} args
+	-ms-{prop} args
+	-o-{prop} args
+	{prop} args
+
+transition()
+	vendor('transition', arguments)
+
 .carousel
 	position relative
 	padding .5em
 	background-color lightgray
+
+	.band-container
+		transition top 100ms
 
 .carousel-cell
 	min-height 1em
