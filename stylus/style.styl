@@ -12,6 +12,9 @@ a
 	&:active
 		color inherit
 
+body
+	position relative
+
 /*
 // Good call by d3vron:
 // gist.github.com/d3vron/1080346
@@ -28,11 +31,20 @@ transition()
 
 .carousel
 	position relative
-	padding .5em
-	background-color lightgray
+
+	.mask
+		pointer-events none
+		z-index 2
+		position absolute
+		width 100%
+		background-color rgba(0, 0, 0, .5)
+	.mask.top
+		top 0
+	.mask.bottom
+		bottom 0
 
 	.band-container
 		transition top 100ms
 
 .carousel-cell
-	min-height 1em
+	min-height 40px
