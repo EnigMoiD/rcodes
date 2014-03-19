@@ -23,11 +23,9 @@ function Decoder(selector, bands) {
 	bandMap['exponent'] = exponents
 	bandMap['tolerance'] = tolerances
 
-	this.carousels = []
+	this.container.append('<div class="carousel-chain"></div>')
 
-	for (var sel in bandMap) {
-		var data = bandMap[sel]
-		this.container.append('<div class="' + sel + '"></div>')
-		this.carousels.push(new Carousel(data, '.'+sel, {style: {'width': '20%', 'display': 'inline-block', 'overflow': 'hidden'}, height: 300}))
-	}
+	this.carouselChain = CarouselChain('.carousel-chain', bandMap, {
+		cellHeight: 40
+	})
 }
