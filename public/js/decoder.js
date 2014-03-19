@@ -1,6 +1,6 @@
 function Decoder(selector, bands) {
-	var container = $(selector)
-	container.addClass('decoder')
+	this.container = $(selector)
+	this.container.addClass('decoder')
 
 	var mantissae = []
 	var tolerances = []
@@ -23,9 +23,11 @@ function Decoder(selector, bands) {
 	bandMap['exponent'] = exponents
 	bandMap['tolerance'] = tolerances
 
+	this.carousels = []
+
 	for (var sel in bandMap) {
 		var data = bandMap[sel]
-		container.append('<div class="' + sel + '"></div>')
-		Carousel(data, '.'+sel, {'width': '20%', 'display': 'inline-block'})
+		this.container.append('<div class="' + sel + '"></div>')
+		this.carousels.push(new Carousel(data, '.'+sel, {style: {'width': '20%', 'display': 'inline-block', 'overflow': 'hidden'}, height: 300}))
 	}
 }

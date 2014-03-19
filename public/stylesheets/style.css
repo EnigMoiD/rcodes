@@ -1,1 +1,1 @@
-*{padding:0;margin:0}a{text-decoration:none;color:inherit;}a:visited{color:inherit}a:hover{color:inherit}a:active{color:inherit}.carousel{padding:.5em;background-color:#d3d3d3}.carousel-cell{min-height:1em}
+*{padding:0;margin:0}a{text-decoration:none;color:inherit;}a:visited{color:inherit}a:hover{color:inherit}a:active{color:inherit}.carousel{position:relative;padding:.5em;background-color:#d3d3d3}.carousel-cell{min-height:1em}

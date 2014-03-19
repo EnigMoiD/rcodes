@@ -1,3 +1,3 @@
 $(document).ready(function() {
-	Decoder('#decoder', 4)
+	var decoder = new Decoder('#decoder', 4)
 })
