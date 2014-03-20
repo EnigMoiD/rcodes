@@ -28,4 +28,6 @@ function Decoder(selector, bands) {
 	this.carouselChain = CarouselChain('.carousel-chain', bandMap, {
 		cellHeight: 40
 	})
+
+	return this
 }
