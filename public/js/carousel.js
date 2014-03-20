@@ -15,9 +15,20 @@ function Carousel(cells, selector, options) {
 
 	this.bandContainer = this.container.children().last()
 
-	this.addCell = function(cell, index) {
+	this.cellViews = []
+
+	this.addCell = function(cell, index, prepend) {
 		cell = "<div class='carousel-cell' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
-		car.bandContainer.append(cell)
+
+		if (prepend) {
+			car.cellViews.unshift(cell)
+			car.bandContainer.prepend(cell)
+		}
+		else {
+			car.cellViews.push(cell)
+			car.bandContainer.append(cell)
+		}
+
 		$(car.bandContainer).find('[cellno=' + index + ']').mouseup(function() {
 			car.centerTo(this)
 		})
@@ -25,13 +36,12 @@ function Carousel(cells, selector, options) {
 
 	this.centerTo = function(target) {
 		car.bandContainer.css({
-			position: 'relative',
 			top: (options.height/2 - $(target).position().top - options.cellHeight/2) + 'px'
 		})
 	}
 
 	for (var i in cells) {
 		cell = cells[i]
-		car.addCell(cell)
+		car.addCell(cell, i, false)
 	}
 }
