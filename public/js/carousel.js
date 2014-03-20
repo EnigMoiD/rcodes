@@ -15,8 +15,24 @@ function Carousel(cells, selector, options) {
 
 	this.bandContainer = this.container.children().last()
 
+	this.cellHeight = options.cellHeight
+
 	this.addCell = function(cell, index, prepend) {
 		cell = "<div class='carousel-cell' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
+
+		if (prepend)
+			car.bandContainer.prepend(cell)
+		else
+			car.bandContainer.append(cell)
+
+		car.getCell(index).mouseup(function() {
+			car.centerTo(index)
+		})
+	}
+
+	this.reuseCell = function(cell, index, prepend) {
+		console.log('RESUSE CELL')
+		console.log(cell)
 
 		if (prepend)
 			car.bandContainer.prepend(cell)
@@ -32,15 +48,58 @@ function Carousel(cells, selector, options) {
 		return $(car.bandContainer).find('[cellno=' + index + ']')
 	}
 
+	this.getCells = function() {
+		return $(car.bandContainer).children()
+	}
+
 	this.centerTo = function(index) {
+		var delta = index - car.selection
+
+		car.selection = index
+
+		car.removeCells(delta)
+		car.addCells(delta)
+
 		var target = car.getCell(index)
+		var offset = options.height/2 - $(target).position().top - car.cellHeight/2
 		car.bandContainer.css({
-			top: (options.height/2 - $(target).position().top - options.cellHeight/2) + 'px'
+			top: offset + 'px'
 		})
+	}
+
+	this.cellQueue = []
+
+	this.addCells = function(delta) {
+		// scrolling up
+		if (delta < 0)
+			for (var i = car.cellQueue.length - 1; i >= 0; i--)
+				car.reuseCell(car.cellQueue[i], i, true)
+		else
+			for (var i = 0; i < car.cellQueue.length; i++)
+				car.reuseCell(car.cellQueue[i], i, false)
+	}
+
+	this.removeCells = function(delta) {
+		cellViews = car.getCells()
+		console.log(cellViews)
+		// scrolling up
+		if (delta > 0) {
+			car.cellQueue = cellViews.slice(0, delta)
+			console.log('queue')
+			console.log(car.cellQueue)
+		}
+		else {
+			var l = cellViews.length
+			car.cellQueue = cellViews.slice(l-delta, l+1)
+		}
+		$(car.cellQueue).remove()
 	}
 
 	for (var i in cells) {
 		cell = cells[i]
 		car.addCell(cell, i, false)
 	}
+
+	this.selection = cells.length/2-1
+	this.centerTo(cells.length/2-1)
 }

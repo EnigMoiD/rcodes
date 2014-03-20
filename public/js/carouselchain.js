@@ -14,8 +14,6 @@ function CarouselChain(selector, data, options) {
 	for (var sel in data) {
 		var datum = data[sel]
 		this.container.append('<div class="' + sel + '"></div>')
-		console.log(con.height)
-		console.log(options.cellHeight * datum.length)
 		this.carousels.push(new Carousel(datum, '.'+sel, {
 			style: {
 				'width': '20%',
