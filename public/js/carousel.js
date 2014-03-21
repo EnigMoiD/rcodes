@@ -18,7 +18,7 @@ function Carousel(cells, selector, options) {
 	this.cellHeight = options.cellHeight
 
 	this.addCell = function(cell, index, prepend) {
-		cell = "<div class='carousel-cell' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
+		cell = "<div class='carousel-cell' cellpos='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
 
 		if (prepend)
 			car.bandContainer.prepend(cell)
@@ -36,13 +36,13 @@ function Carousel(cells, selector, options) {
 		else
 			car.bandContainer.append(cell)
 
-		car.getCell($(cell).attr('cellno')).mouseup(function() {
+		car.getCell($(cell).attr('cellpos')).mouseup(function() {
 			car.centerTo(index)
 		})
 	}
 
 	this.getCell = function(index) {
-		return $(car.bandContainer).find('[cellno=' + index + ']')
+		return $(car.bandContainer).find('[cellpos=' + index + ']')
 	}
 
 	this.getCells = function() {
@@ -56,6 +56,8 @@ function Carousel(cells, selector, options) {
 
 		car.removeCells(delta)
 		car.addCells(delta)
+
+		car.numberCells()
 
 		var target = car.getCell(index)
 		var offset = options.height/2 - $(target).position().top - car.cellHeight/2
@@ -90,9 +92,18 @@ function Carousel(cells, selector, options) {
 		$(car.cellQueue).remove()
 	}
 
-	for (var i in cells) {
+	this.numberCells = function() {
+		var cells = car.getCells()
+		for (var i = cells.length - 1; i >= 0; i--) {
+			var cell = cells[i]
+			$(cell).attr('cellpos', i)
+		};
+	}
+
+	car.addCell(cells[cells.length-1], 0, false)
+	for (var i = 0; i < cells.length; i++) {
 		cell = cells[i]
-		car.addCell(cell, i, false)
+		car.addCell(cell, i+1, false)
 	}
 
 	this.selection = cells.length/2-1
