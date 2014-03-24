@@ -57,9 +57,6 @@ function Carousel(cells, selector, options) {
 
 		car.selection = index
 
-		car.removeCells(delta)
-		car.addCells(delta)
-
 		var target = car.getCell(index)
 		var offset = options.height/2 - $(target).position().top - car.cellHeight/2
 		car.bandContainer.css({
@@ -68,32 +65,6 @@ function Carousel(cells, selector, options) {
 	}
 
 	this.cellQueue = []
-
-	this.addCells = function(delta) {
-		// scrolling up
-		if (delta < 0)
-			for (var i = car.cellQueue.length - 1; i >= 0; i--)
-				car.reuseCell(car.cellQueue[i], i, true)
-		else
-			for (var i = 0; i < car.cellQueue.length; i++)
-				car.reuseCell(car.cellQueue[i], i, false)
-	}
-
-	this.removeCells = function(delta) {
-		cellViews = car.getCells()
-		console.log(cellViews)
-		// scrolling up
-		if (delta > 0) {
-			car.cellQueue = cellViews.slice(0, delta)
-			console.log('queue')
-			console.log(car.cellQueue)
-		}
-		else {
-			var l = cellViews.length
-			car.cellQueue = cellViews.slice(l-delta, l+1)
-		}
-		$(car.cellQueue).remove()
-	}
 
 	for (var i in cells) {
 		cell = cells[i]
