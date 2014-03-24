@@ -28,12 +28,16 @@ function Decoder(selector, bands) {
 	this.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
 		cellHeight: 40
 	})
-	
-	this.resistor = function() {
+
+	this.resistorCode = function() {
 		var string = ""
 		for (var i in dec.carouselChain.carousels) {
 			string += dec.carouselChain.carousels[i].selectedData
 		}
 		return string
+	}
+
+	this.resistorValue = function() {
+		return decode(dec.resistorCode())
 	}
 }
