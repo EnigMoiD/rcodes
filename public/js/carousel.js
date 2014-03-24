@@ -30,7 +30,7 @@ function Carousel(cells, selector, options) {
 			car.bandContainer.append(cell)
 
 		car.getCell(index).mouseup(function() {
-			car.centerTo(index)
+			car.select(index)
 		})
 	}
 
@@ -42,12 +42,15 @@ function Carousel(cells, selector, options) {
 		return $(car.bandContainer).children()
 	}
 
-	this.centerTo = function(index) {
+	this.select = function(index) {
 		var delta = index - car.selection
 
 		car.selection = index
 
 		var target = car.getCell(index)
+
+		car.selectedData = $(target).attr('data')
+
 		var offset = options.height/2 - $(target).position().top - car.cellHeight/2
 		car.bandContainer.css({
 			top: offset + 'px'
@@ -62,5 +65,5 @@ function Carousel(cells, selector, options) {
 	}
 
 	this.selection = cells.length/2-1
-	this.centerTo(cells.length/2-1)
+	this.select(cells.length/2-1)
 }
