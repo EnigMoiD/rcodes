@@ -26,6 +26,4 @@ function CarouselChain(selector, data, options) {
 			cellHeight: options.cellHeight
 		}))
 	}
-	console.log('Carousel Chain')
-	console.log(this.carousels)
 }

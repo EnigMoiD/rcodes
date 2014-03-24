@@ -24,7 +24,7 @@ function Decoder(selector, bands) {
 	bandMap['tolerance'] = tolerances
 
 	this.container.append('<div class="carousel-chain"></div>')
-	this.carouselChain = CarouselChain('.carousel-chain', bandMap, {
+	this.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
 		cellHeight: 40
 	})
 }
