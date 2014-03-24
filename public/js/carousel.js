@@ -16,7 +16,9 @@ function Carousel(cells, selector, options) {
 	this.bandContainer = this.container.children().last()
 
 	this.addCell = function(cell, index, prepend) {
-		cell = "<div class='carousel-cell' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
+		console.log('OPTIONS')
+		console.log(options)
+		cell = "<div class='carousel-cell' data='" + options.data[index].data + "' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
 
 		if (prepend)
 			car.bandContainer.prepend(cell)

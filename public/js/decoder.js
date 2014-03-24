@@ -8,7 +8,7 @@ function Decoder(selector, bands) {
 	for (var key in map) {
 		band = map[key]
 
-		var bandCell = { content: "", color: band.color.name }
+		var bandCell = { content: "", color: band.color.name, data: key }
 
 		if (band.mant !== null) mantissae.push(bandCell)
 		if (band.exp !== null) exponents.push(bandCell)
@@ -24,7 +24,6 @@ function Decoder(selector, bands) {
 	bandMap['tolerance'] = tolerances
 
 	this.container.append('<div class="carousel-chain"></div>')
-
 	this.carouselChain = CarouselChain('.carousel-chain', bandMap, {
 		cellHeight: 40
 	})
