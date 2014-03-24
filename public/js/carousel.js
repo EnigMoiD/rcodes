@@ -17,23 +17,13 @@ function Carousel(cells, selector, options) {
 
 	this.cellHeight = options.cellHeight
 
-	this.addCell = function(cell, index, prepend) {
+	this.newCell = function(cell, index, prepend) {
 		cell = "<div class='carousel-cell' data='" + options.data[index].data + "' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
 
-		if (prepend)
-			car.bandContainer.prepend(cell)
-		else
-			car.bandContainer.append(cell)
-
-		car.getCell(index).mouseup(function() {
-			car.centerTo(index)
-		})
+		car.insertCell(cell, index, prepend)
 	}
 
-	this.reuseCell = function(cell, index, prepend) {
-		console.log('RESUSE CELL')
-		console.log(cell)
-
+	this.insertCell = function(cell, index, prepend) {
 		if (prepend)
 			car.bandContainer.prepend(cell)
 		else
@@ -68,7 +58,7 @@ function Carousel(cells, selector, options) {
 
 	for (var i in cells) {
 		cell = cells[i]
-		car.addCell(cell, i, false)
+		car.newCell(cell, i, false)
 	}
 
 	this.selection = cells.length/2-1
