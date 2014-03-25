@@ -28,6 +28,8 @@ function Decoder(selector, bands) {
 	this.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
 		cellHeight: 40
 	})
+	this.container.append('<div class="display"></div>')
+	this.display = $(this.container).find('.display')
 
 	this.resistorCode = function() {
 		var string = ""
@@ -36,6 +38,10 @@ function Decoder(selector, bands) {
 		}
 		return string
 	}
+
+	$(dec.carouselChain.container).click(function() {
+		dec.display.html(dec.resistorValue().value)
+	})
 
 	this.resistorValue = function() {
 		return decode(dec.resistorCode())
