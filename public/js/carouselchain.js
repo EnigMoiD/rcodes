@@ -16,7 +16,7 @@ function CarouselChain(selector, data, options) {
 		this.container.append('<div class="' + sel + '"></div>')
 		this.carousels.push(new Carousel(datum, '.'+sel, {
 			style: {
-				'width': '20%',
+				'width': 100/Object.keys(data).length + '%',
 				'display': 'inline-block',
 				'overflow': 'hidden',
 				'top': -(con.height - (options.cellHeight * datum.length))/2
