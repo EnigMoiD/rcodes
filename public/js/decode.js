@@ -13,6 +13,18 @@ window.map = {
 	l: { mant: null, exp: -1, tol: .05, temp: null, color: { name: "gold", value: "#ffc145" } }
 }
 
+window.unitMap = {
+	1e12: { str: "tera", abr: "T" },
+	1e9: { str: "giga", abr: "G" },
+	1e6: { str: "mega", abr: "M" },
+	1e3: { str: "kilo", abr: "k" },
+	1e0: { str: "", abr: "" },
+	1e-3: { str: "milli", abr: "m" },
+	1e-6: { str: "micro", abr: "µ" },
+	1e-9: { str: "nano", abr: "n" },
+	1e-12: { str: "pico", abr: "p" }
+}
+
 function decode(code) {
 	try {
 		if (code.length < 3 || code.length > 5)
@@ -39,9 +51,19 @@ function decode(code) {
 	}
 
 	return {
+		str: niceString(value*mult, "Ohms"),
 		value: value*mult,
 		tolerance: tol
 	};
+}
+
+function niceString(num, units) {
+	var string = ""
+	for (var e in unitMap) {
+		if (num / e >= 1 && num / e < 1e3)
+			string += num/e + " " + unitMap[e].abr + units
+	}
+	return string
 }
 
 // module.exports.decode = decode

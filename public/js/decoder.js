@@ -42,7 +42,7 @@ function Decoder(selector, bands) {
 	}
 
 	$(dec.carouselChain.$c).click(function() {
-		dec.display.html(dec.resistorValue().value)
+		dec.display.html(dec.resistorValue().str)
 	})
 
 	dec.resistorValue = function() {
