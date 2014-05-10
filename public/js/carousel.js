@@ -1,19 +1,19 @@
 function Carousel(cells, selector, options) {
 	var car = this
-	car.container = $(selector)
-	car.container.addClass('carousel')
-	car.container.css(options.style || "")
-	car.container.height(options.height || 'auto')
+	car.$c = $(selector)
+	car.$c.addClass('carousel')
+	car.$c.css(options.style || "")
+	car.$c.height(options.height || 'auto')
 
-	car.container.append('<div class="mask top"></div>')
+	car.$c.append('<div class="mask top"></div>')
 
-	car.container.find('.mask.top').height(options.height/2 - options.cellHeight/2 || 0)
-	car.container.append('<div class="mask bottom"></div>')
-	car.container.find('.mask.bottom').height(options.height/2 - options.cellHeight/2 || 0)
+	car.$c.find('.mask.top').height(options.height/2 - options.cellHeight/2 || 0)
+	car.$c.append('<div class="mask bottom"></div>')
+	car.$c.find('.mask.bottom').height(options.height/2 - options.cellHeight/2 || 0)
 
-	car.container.append('<div class="band-container"></div>')
+	car.$c.append('<div class="band-container"></div>')
 
-	car.bandContainer = car.container.children().last()
+	car.bandContainer = car.$c.children().last()
 
 	car.cellHeight = options.cellHeight
 

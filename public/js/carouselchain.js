@@ -1,7 +1,7 @@
 function CarouselChain(selector, data, options) {
 	var chain = this
-	chain.container = $(selector)
-	chain.container.addClass('carousel-chain')
+	chain.$c = $(selector)
+	chain.$c.addClass('carousel-chain')
 
 	chain.carousels = []
 
@@ -13,7 +13,7 @@ function CarouselChain(selector, data, options) {
 
 	for (var sel in data) {
 		var datum = data[sel]
-		chain.container.append('<div class="' + sel + '"></div>')
+		chain.$c.append('<div class="' + sel + '"></div>')
 		chain.carousels.push(new Carousel(datum, '.'+sel, {
 			style: {
 				'width': 100/Object.keys(data).length + '%',
