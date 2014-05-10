@@ -3,6 +3,8 @@ function Decoder(selector, bands) {
 	this.container = $(selector)
 	this.container.addClass('decoder')
 
+	this.possibleBands = [4, 5, 6]
+
 	var mantissae = []
 	var tolerances = []
 	var exponents = []
@@ -46,4 +48,13 @@ function Decoder(selector, bands) {
 	this.resistorValue = function() {
 		return decode(dec.resistorCode())
 	}
+
+	this.container.append('<div class="band-buttons"></div>')
+	for (var i in this.possibleBands) {
+		bands = this.possibleBands[i]
+		$('.band-buttons').append('<button class="band-choice" data="'+bands+'">'+bands+'</button>')
+	}
+	$('.band-choice').click(function() {
+		console.log(this);
+	})
 }
