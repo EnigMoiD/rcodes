@@ -20,7 +20,7 @@ window.unitMap = {
 	1e3: { str: "kilo", abr: "k" },
 	1e0: { str: "", abr: "" },
 	1e-3: { str: "milli", abr: "m" },
-	1e-6: { str: "micro", abr: "µ" },
+	1e-6: { str: "micro", abr: "&mu;" },
 	1e-9: { str: "nano", abr: "n" },
 	1e-12: { str: "pico", abr: "p" }
 }
