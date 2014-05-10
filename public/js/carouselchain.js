@@ -1,25 +1,25 @@
 function CarouselChain(selector, data, options) {
-	var con = this
-	this.container = $(selector)
-	this.container.addClass('carousel-chain')
+	var chain = this
+	chain.container = $(selector)
+	chain.container.addClass('carousel-chain')
 
-	this.carousels = []
+	chain.carousels = []
 
 	var longest = 0
 	for (var sel in data)
 		longest = longest < data[sel].length? data[sel].length : longest
 
-	this.height = options.cellHeight * longest
+	chain.height = options.cellHeight * longest
 
 	for (var sel in data) {
 		var datum = data[sel]
-		this.container.append('<div class="' + sel + '"></div>')
-		this.carousels.push(new Carousel(datum, '.'+sel, {
+		chain.container.append('<div class="' + sel + '"></div>')
+		chain.carousels.push(new Carousel(datum, '.'+sel, {
 			style: {
 				'width': 100/Object.keys(data).length + '%',
 				'display': 'inline-block',
 				'overflow': 'hidden',
-				'top': -(con.height - (options.cellHeight * datum.length))/2
+				'top': -(chain.height - (options.cellHeight * datum.length))/2
 			},
 			height: options.cellHeight * datum.length,
 			data: datum,
