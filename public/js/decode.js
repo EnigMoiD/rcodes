@@ -27,9 +27,16 @@ window.unitMap = {
 
 function decode(code) {
 	try {
-		if (code.length < 3 || code.length > 5)
-			throw "Invalid number of bands."
+		if (code.length < 4 || code.length > 6)
+			throw "Invalid number of bands." 
 		var bands = code.length;
+
+		var temp
+		if (bands == 6) {
+			temp = code[5]
+			code = code.slice(0, -1)
+			bands = 5
+		}
 
 		var tol = map[code[bands-1]].tol
 		if (tol === null)
@@ -53,7 +60,8 @@ function decode(code) {
 	return {
 		str: resString(value*mult, tol),
 		value: value*mult,
-		tolerance: tol
+		tolerance: tol,
+		temp: temp
 	};
 }
 
