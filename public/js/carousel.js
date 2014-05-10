@@ -5,6 +5,8 @@ function Carousel(cells, selector, options) {
 	car.$c.css(options.style || "")
 	car.$c.height(options.height || 'auto')
 
+	car.cellQueue = []
+
 	car.init = function() {
 		car.$c.append('<div class="mask top"></div>')
 
@@ -18,8 +20,6 @@ function Carousel(cells, selector, options) {
 
 		car.cellHeight = options.cellHeight
 
-		car.cellQueue = []
-
 		for (var i in cells) {
 			cell = cells[i]
 			car.newCell(cell, i, false)
@@ -27,6 +27,12 @@ function Carousel(cells, selector, options) {
 
 		car.selection = cells.length/2-1
 		car.select(cells.length/2-1)
+	}
+
+	car.clear = function() {
+		car.$c.empty()
+
+		car.cellQueue = []
 	}
 
 	car.newCell = function(cell, index, prepend) {
