@@ -9,7 +9,7 @@ function Decoder(selector, bands) {
 	var tolerances = []
 	var exponents = []
 	for (var key in map) {
-		band = map[key]
+		var band = map[key]
 
 		var bandCell = { content: "", color: band.color.name, data: key }
 
