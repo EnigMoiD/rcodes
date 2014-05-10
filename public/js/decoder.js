@@ -8,30 +8,58 @@ function Decoder(selector, bands) {
 	var mantissae = []
 	var tolerances = []
 	var exponents = []
-	for (var key in map) {
-		var band = map[key]
-
-		var bandCell = { content: "", color: band.color.name, data: key }
-
-		if (band.mant !== null) mantissae.push(bandCell)
-		if (band.exp !== null) exponents.push(bandCell)
-		if (band.tol !== null) tolerances.push(bandCell)
-	}
 
 	var bandMap = {}
 
-	for (var i = 0; i < bands-2; i++)
-		bandMap['mantissa'+i] = mantissae
+	dec.init = function(bands) {
+		for (var key in map) {
+			var band = map[key]
 
-	bandMap['exponent'] = exponents
-	bandMap['tolerance'] = tolerances
+			var bandCell = { content: "", color: band.color.name, data: key }
 
-	dec.$c.append('<div class="carousel-chain"></div>')
-	dec.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
-		cellHeight: 40
-	})
-	dec.$c.append('<div class="display"></div>')
-	dec.display = $(dec.$c).find('.display')
+			if (band.mant !== null) mantissae.push(bandCell)
+			if (band.exp !== null) exponents.push(bandCell)
+			if (band.tol !== null) tolerances.push(bandCell)
+		}
+
+		for (var i = 0; i < bands-2; i++)
+			bandMap['mantissa'+i] = mantissae
+
+		bandMap['exponent'] = exponents
+		bandMap['tolerance'] = tolerances
+
+		dec.$c.append('<div class="carousel-chain"></div>')
+		dec.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
+			cellHeight: 40
+		})
+		dec.$c.append('<div class="display"></div>')
+		dec.display = $(dec.$c).find('.display')
+
+		$(dec.carouselChain.$c).click(function() {
+			dec.display.html(dec.resistorValue().str)
+		})
+
+		dec.$c.append('<div class="band-buttons"></div>')
+		for (var i in dec.possibleBands) {
+			bands = dec.possibleBands[i]
+			$('.band-buttons').append('<button class="band-choice" data="'+bands+'">'+bands+'</button>')
+		}
+
+		$('.band-choice').click(function() {
+			dec.clear()
+			dec.init($(this).attr('data'))
+		})
+	}
+
+	dec.clear = function() {
+		dec.$c.empty()
+
+		mantissae = []
+		tolerances = []
+		exponents = []
+
+		bandMap = {}
+	}
 
 	dec.resistorCode = function() {
 		var string = ""
@@ -41,20 +69,9 @@ function Decoder(selector, bands) {
 		return string
 	}
 
-	$(dec.carouselChain.$c).click(function() {
-		dec.display.html(dec.resistorValue().str)
-	})
-
 	dec.resistorValue = function() {
 		return decode(dec.resistorCode())
 	}
 
-	dec.$c.append('<div class="band-buttons"></div>')
-	for (var i in dec.possibleBands) {
-		bands = dec.possibleBands[i]
-		$('.band-buttons').append('<button class="band-choice" data="'+bands+'">'+bands+'</button>')
-	}
-	$('.band-choice').click(function() {
-		console.log(this);
-	})
+	dec.init(bands)
 }
