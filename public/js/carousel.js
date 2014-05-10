@@ -5,17 +5,29 @@ function Carousel(cells, selector, options) {
 	car.$c.css(options.style || "")
 	car.$c.height(options.height || 'auto')
 
-	car.$c.append('<div class="mask top"></div>')
+	car.init = function() {
+		car.$c.append('<div class="mask top"></div>')
 
-	car.$c.find('.mask.top').height(options.height/2 - options.cellHeight/2 || 0)
-	car.$c.append('<div class="mask bottom"></div>')
-	car.$c.find('.mask.bottom').height(options.height/2 - options.cellHeight/2 || 0)
+		car.$c.find('.mask.top').height(options.height/2 - options.cellHeight/2 || 0)
+		car.$c.append('<div class="mask bottom"></div>')
+		car.$c.find('.mask.bottom').height(options.height/2 - options.cellHeight/2 || 0)
 
-	car.$c.append('<div class="band-container"></div>')
+		car.$c.append('<div class="band-container"></div>')
 
-	car.bandContainer = car.$c.children().last()
+		car.bandContainer = car.$c.children().last()
 
-	car.cellHeight = options.cellHeight
+		car.cellHeight = options.cellHeight
+
+		car.cellQueue = []
+
+		for (var i in cells) {
+			cell = cells[i]
+			car.newCell(cell, i, false)
+		}
+
+		car.selection = cells.length/2-1
+		car.select(cells.length/2-1)
+	}
 
 	car.newCell = function(cell, index, prepend) {
 		cell = "<div class='carousel-cell' data='" + options.data[index].data + "' cellno='" + index + "' style='background-color: " + cell.color + "'>" + cell.content + "</div>"
@@ -57,13 +69,5 @@ function Carousel(cells, selector, options) {
 		})
 	}
 
-	car.cellQueue = []
-
-	for (var i in cells) {
-		cell = cells[i]
-		car.newCell(cell, i, false)
-	}
-
-	car.selection = cells.length/2-1
-	car.select(cells.length/2-1)
+	car.init()
 }
