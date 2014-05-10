@@ -51,17 +51,21 @@ function decode(code) {
 	}
 
 	return {
-		str: niceString(value*mult, "Ohms"),
+		str: resString(value*mult, tol),
 		value: value*mult,
 		tolerance: tol
 	};
+}
+
+function resString(val, tol) {
+	return niceString(val, "Ohms") + " &plusmn; " + niceString(tol*val, "")
 }
 
 function niceString(num, units) {
 	var string = ""
 	for (var e in unitMap) {
 		if (num / e >= 1 && num / e < 1e3)
-			string += num/e + " " + unitMap[e].abr + units
+			string += num/e + unitMap[e].abr + units
 	}
 	return string
 }
