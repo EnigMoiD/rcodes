@@ -8,6 +8,7 @@ function Decoder(selector, bands) {
 	var mantissae = []
 	var tolerances = []
 	var exponents = []
+	var temperatures = []
 
 	var bandMap = {}
 
@@ -20,6 +21,13 @@ function Decoder(selector, bands) {
 			if (band.mant !== null) mantissae.push(bandCell)
 			if (band.exp !== null) exponents.push(bandCell)
 			if (band.tol !== null) tolerances.push(bandCell)
+			if (band.temp !== null) temperatures.push(bandCell)
+		}
+
+		var sixBands = false
+		if (bands == 6) {
+			sixBands = true
+			bands = 5
 		}
 
 		for (var i = 0; i < bands-2; i++)
@@ -27,6 +35,9 @@ function Decoder(selector, bands) {
 
 		bandMap['exponent'] = exponents
 		bandMap['tolerance'] = tolerances
+
+		if (sixBands)
+			bandMap['temperature'] = temperatures
 
 		dec.$c.append('<div class="carousel-chain"></div>')
 		dec.carouselChain = new CarouselChain('.carousel-chain', bandMap, {
