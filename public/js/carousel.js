@@ -26,7 +26,7 @@ function Carousel(cells, selector, options) {
 		}
 
 		car.selection = cells.length/2-1
-		car.select(Math.floor(cells.length/2)-1)
+		car.select(Math.ceil(cells.length/2)-1)
 	}
 
 	car.clear = function() {
