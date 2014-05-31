@@ -68,6 +68,7 @@ function Decoder(selector, bands) {
 		mantissae = []
 		tolerances = []
 		exponents = []
+		temperatures = []
 
 		bandMap = {}
 	}
