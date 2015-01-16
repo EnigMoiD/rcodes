@@ -14,11 +14,9 @@ a
 
 body
 	position relative
+	font-family Helvetica, Sans-serif
 
-/*
-// Good call by d3vron:
 // gist.github.com/d3vron/1080346
-*/
 vendor(prop, args)
 	-webkit-{prop} args
 	-moz-{prop} args
@@ -28,6 +26,20 @@ vendor(prop, args)
 
 transition()
 	vendor('transition', arguments)
+
+.band-choice
+	display inline-block
+	button-style none
+	width 33.333333%
+	height 2em
+	line-height 2em
+	text-align center
+	font-size 1em
+	color white
+	background-color gray
+	
+	&:hover
+		background-color black
 
 .carousel
 	position relative

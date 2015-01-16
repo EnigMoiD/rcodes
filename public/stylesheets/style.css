@@ -17,11 +17,22 @@ a:active {
 }
 body {
   position: relative;
+  font-family: Helvetica, Sans-serif;
 }
-/*
-// Good call by d3vron:
-// gist.github.com/d3vron/1080346
-*/
+.band-choice {
+  display: inline-block;
+  button-style: none;
+  width: 33.333333%;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-size: 1em;
+  color: #fff;
+  background-color: #808080;
+}
+.band-choice:hover {
+  background-color: #000;
+}
 .carousel {
   position: relative;
   background-color: #d3d3d3;

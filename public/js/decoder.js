@@ -53,7 +53,7 @@ function Decoder(selector, bands) {
 		dec.$c.append('<div class="band-buttons"></div>')
 		for (var i in dec.possibleBands) {
 			bands = dec.possibleBands[i]
-			$('.band-buttons').append('<button class="band-choice" data="'+bands+'">'+bands+'</button>')
+			$('.band-buttons').append('<div class="band-choice" data="'+bands+'">'+bands+'</div>')
 		}
 
 		$('.band-choice').click(function() {
