@@ -1,1 +1,57 @@
-*{padding:0;margin:0}a{text-decoration:none;color:inherit;}a:visited{color:inherit}a:hover{color:inherit}a:active{color:inherit}body{position:relative}.carousel{position:relative;background-color:#d3d3d3;}.carousel .mask{pointer-events:none;z-index:2;position:absolute;width:100%;background-color:rgba(0,0,0,0.2)}.carousel .mask.top{top:0}.carousel .mask.bottom{bottom:0}.carousel .band-container{-webkit-transition:top 100ms;-moz-transition:top 100ms;-ms-transition:top 100ms;-o-transition:top 100ms;transition:top 100ms;position:relative}.carousel-cell{min-height:40px}.decoder .display{text-align:center;font-size:20px;font-family:'Helvetica'}
+* {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited {
+  color: inherit;
+}
+a:hover {
+  color: inherit;
+}
+a:active {
+  color: inherit;
+}
+body {
+  position: relative;
+}
+/*
+// Good call by d3vron:
+// gist.github.com/d3vron/1080346
+*/
+.carousel {
+  position: relative;
+  background-color: #d3d3d3;
+}
+.carousel .mask {
+  pointer-events: none;
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+.carousel .mask.top {
+  top: 0;
+}
+.carousel .mask.bottom {
+  bottom: 0;
+}
+.carousel .band-container {
+  -webkit-transition: top 100ms;
+  -moz-transition: top 100ms;
+  -ms-transition: top 100ms;
+  -o-transition: top 100ms;
+  transition: top 100ms;
+  position: relative;
+}
+.carousel-cell {
+  min-height: 40px;
+}
+.decoder .display {
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Helvetica';
+}
