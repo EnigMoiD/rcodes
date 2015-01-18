@@ -42,13 +42,16 @@ body {
   z-index: 2;
   position: absolute;
   width: 100%;
-  background-color: rgba(0,0,0,0.2);
 }
 .carousel .mask.top {
+  padding-bottom: 0.2em;
   top: 0;
+  background: linear-gradient(#000, rgba(0,0,0,0.4));
 }
 .carousel .mask.bottom {
+  padding-top: 0.2em;
   bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.4), #000);
 }
 .carousel .band-container {
   -webkit-transition: top 100ms;
